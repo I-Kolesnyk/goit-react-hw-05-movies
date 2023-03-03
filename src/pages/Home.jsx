@@ -26,7 +26,7 @@ function Home() {
   return (
     <main>
       <h1>Trending today</h1>
-      <MoviesGallery movies={movies} />
+      {status === 'resolved' && <MoviesGallery movies={movies} />}
     </main>
   );
 }
