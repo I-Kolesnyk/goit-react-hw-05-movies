@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getTrendingMovies } from 'utils/api';
 
 import MoviesGallery from 'components/MoviesGallery';
 import Pagination from 'components/Pagination/Pagination';
+import Loader from 'components/Loader';
+import NetworkError from 'components/NetworkError';
+
+import { Title } from './Home.styled';
 
 function Home() {
   const [movies, setMovies] = useState([]);
   const [status, setStatus] = useState('idle');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const params = useParams();
 
   useEffect(() => {
     async function addTrendingMovies() {
@@ -24,32 +27,13 @@ function Home() {
         setTotalPages(trendingMovies.total_pages);
         setStatus('resolved');
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
+        setError(error.message);
         setStatus('rejected');
       }
     }
     addTrendingMovies();
   }, [page]);
-
-  useEffect(() => {
-    if (params.page > totalPages) {
-      return;
-    }
-    if (location.pathname === '/trending') {
-      navigate(`/trending/2`);
-      return;
-    }
-    if (location.pathname === '/trending/1') {
-      navigate(`/`);
-      setPage(1);
-      return;
-    }
-    if (params.page) {
-      setPage(params.page);
-      return;
-    }
-    setPage(1);
-  }, [params, totalPages, location, navigate]);
 
   const changePage = currentPage => {
     navigate(`/${currentPage}`);
@@ -58,10 +42,17 @@ function Home() {
 
   return (
     <main>
-      <h1>Trending today</h1>
+      {status === 'pending' && <Loader />}
+      {status === 'resolved' && <Title>Trending today</Title>}
       {status === 'resolved' && <MoviesGallery movies={movies} />}
-      {status === 'resolved' && <Pagination page={page} totalPages={totalPages} changePage={changePage} />}
-      
+      {status === 'resolved' && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          changePage={changePage}
+        />
+      )}
+      {status === 'rejected' && error === 'Network Error' && <NetworkError />}
     </main>
   );
 }

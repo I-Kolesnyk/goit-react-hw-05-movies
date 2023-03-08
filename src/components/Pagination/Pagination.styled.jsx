@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 
 export const StyledPagination = styled(ReactPaginate)`
   margin-top: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,23 +12,22 @@ export const StyledPagination = styled(ReactPaginate)`
   padding: 0;
 
   li a {
-    height: 100px;
-    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
     border-radius: 7px;
-    padding: 5px 10px;
-    border: gray 1px solid;
+    border: navy 2px solid;
+    text-decoration: none;
+    font-size: 14px;
+    color: navy;
     cursor: pointer;
   }
-  li.previous a,
-  li.next a,
-  li.break a {
+   li.active a {
+    background-color: navy;
     border-color: transparent;
-  }
-  li.active a {
-    background-color: #0366d6;
-    border-color: transparent;
-    color: white;
-    min-width: 42px;
+    color: yellow;
   }
   li.disabled a {
     color: grey;

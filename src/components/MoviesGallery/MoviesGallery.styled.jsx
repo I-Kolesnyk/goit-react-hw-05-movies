@@ -4,7 +4,7 @@ export const GalleryList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   margin: 0;
   padding: 0;
 `;

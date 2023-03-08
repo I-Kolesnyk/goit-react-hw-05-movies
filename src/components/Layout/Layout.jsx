@@ -1,19 +1,28 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet} from 'react-router-dom';
+import { Container, Header, Navigation, NavigationLink, Footer } from './Layout.styled';
 
 function Layout() {
   return (
-    <div>
-      <header>
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/movies">Movies</NavLink>
-        </nav>
-      </header>
+    <>
+      <Header>
+        <Container>
+        <Navigation>
+          <NavigationLink to="/">Home</NavigationLink>
+          <NavigationLink to="/movies">Movies</NavigationLink>
+        </Navigation>
+        </Container>
+      </Header>
+      <Container>
       <Outlet />
-      <footer>
-        <p>Copyright</p>
-      </footer>
-    </div>
+      </Container>
+      
+      <Footer>
+        <Container>
+        <p>&copy; 2023 Iryna Kolesnyk <br/>All rights reserved.</p>
+        </Container>
+        
+      </Footer>
+    </>
   );
 }
 
