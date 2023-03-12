@@ -1,11 +1,13 @@
-import { NavLink } from 'react-router-dom';
-import pageNotFound from 'images/pageNotFound.jpg';
+import pageNotFound from '../../images/404.jpg';
+import { Container, HomeLink, Image } from './NotFound.styled';
+
 function NotFoundPage() {
   return (
     <main>
-      <p>There are some problems! Try again later.</p>
-      <img scr={pageNotFound} alt="404 page not found"/>
-      <NavLink to="/" text= "Go Home"/>
+      <Container>
+        <HomeLink to="/">Go Home</HomeLink>
+        <Image src={pageNotFound} alt="404 page not found" />
+      </Container>
     </main>
   );
 }

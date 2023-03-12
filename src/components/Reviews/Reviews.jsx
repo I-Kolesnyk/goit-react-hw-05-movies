@@ -5,6 +5,7 @@ import { getMovieReviews } from 'utils/api';
 
 import Loader from 'components/Loader';
 import ReviewsInfo from 'components/ReviewsInfo';
+import Message from 'components/Message';
 
 function Reviews() {
   const { movieId } = useParams();
@@ -51,7 +52,7 @@ function Reviews() {
       {status === 'resolved' && movieReviews.length !== 0 ? (
         <ReviewsInfo reviews={movieReviews} />
       ) : (
-        'There are no reviews for this movie.'
+        <Message/>
       )}
     </>
   );

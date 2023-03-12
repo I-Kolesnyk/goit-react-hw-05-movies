@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'components/Loader';
 import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 import {
   Container,
@@ -20,7 +22,9 @@ function Layout() {
           </Navigation>
         </Container>
       </Header>
+      <Suspense fallback={<Loader/>}>
       <Outlet />
+      </Suspense>
       <Footer>
         <Container>
           <p>

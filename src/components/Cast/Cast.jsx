@@ -47,7 +47,7 @@ function Cast() {
   return (
     <>
       {status === 'pending' && <Loader />}
-      {status === 'resolved' && <ActorsGallery actors={movieCast} />}
+      {status === 'resolved' && movieCast.length !== 0 && <ActorsGallery actors={movieCast} />}
     </>
   );
 }

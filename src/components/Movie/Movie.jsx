@@ -1,16 +1,25 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getImagePosterPath } from 'utils/getImagePosterPath';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 import { StyledLink } from 'components/LinkButton/LinkButton.styled';
-import { Main, Container, MovieInfo, Image, Navigation, MovieInfoWrapper, Rate } from './Movie.styled';
+import {
+  Main,
+  Container,
+  MovieInfo,
+  Image,
+  Navigation,
+  MovieInfoWrapper,
+  Rate,
+} from './Movie.styled';
 
 function Movie({
   movie: { title, poster_path, overview, genres, vote_average, release_date },
 }) {
   const { state, pathname } = useLocation();
   const posterPath = getImagePosterPath(poster_path);
-  const vote = vote_average.toFixed(1);  
+  const vote = vote_average.toFixed(1);
   const year = release_date.slice(0, 4);
 
   return (
@@ -24,10 +33,10 @@ function Movie({
           <Image src={posterPath} alt={title} />
           <div>
             <MovieInfoWrapper>
-            <h1>
-              {title} ({release_date? year : 'xxxx'})
-            </h1>
-            {vote_average !== 0 && <Rate>{vote}</Rate>}
+              <h1>
+                {title} ({release_date ? year : 'xxxx'})
+              </h1>
+              {vote_average !== 0 && <Rate>{vote}</Rate>}
             </MovieInfoWrapper>
             <h2>Overview</h2>
             {overview ? <p>{overview}</p> : 'Information is not available'}
@@ -55,4 +64,14 @@ function Movie({
   );
 }
 
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.string,
+    vote_average: PropTypes.number,
+    release_date: PropTypes.string,
+  }).isRequired,
+};
 export default Movie;

@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import PropTypes from 'prop-types';
 import { Form, Input, SearchButton, SearchIcon } from './SearchForm.styled';
 
 function SearchForm({ onSubmit }) {
@@ -23,8 +24,15 @@ function SearchForm({ onSubmit }) {
         value={values.value}
         placeholder="Search movies"
       />
-      <SearchButton type="submit"><SearchIcon/></SearchButton>
+      <SearchButton type="submit">
+        <SearchIcon />
+      </SearchButton>
     </Form>
   );
 }
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
 export default SearchForm;

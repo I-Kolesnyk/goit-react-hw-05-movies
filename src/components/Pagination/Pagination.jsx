@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StyledPagination } from './Pagination.styled';
 
 import { TfiAngleLeft } from 'react-icons/tfi';
@@ -24,4 +25,10 @@ function Pagination({ page, totalPages, changePage }) {
     />
   );
 }
+
+Pagination.propTypes = {
+  page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  totalPages: PropTypes.number.isRequired,
+  changePage: PropTypes.func.isRequired,
+};
 export default Pagination;

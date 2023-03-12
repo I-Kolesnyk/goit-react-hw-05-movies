@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { getTrendingMovies } from 'utils/api';
 
 import MoviesGallery from 'components/MoviesGallery';
 import Pagination from 'components/Pagination/Pagination';
 import Loader from 'components/Loader';
-import NotFound from 'pages/NotFound';
 
 import { Title, Container } from './Home.styled';
 
@@ -49,6 +49,16 @@ function Home() {
     setPage(1);
   }, [params.page]);
 
+  useEffect(() => {
+    if(error === 'canceled') {
+      return;
+    }
+    if(error) {
+      toast.error(error);
+      setError('');
+    }
+  }, [error])
+
   const changePage = currentPage => {
     navigate(`/${currentPage}`);
     setPage(currentPage);
@@ -67,7 +77,7 @@ function Home() {
             changePage={changePage}
           />
         )}
-        {status === 'rejected' && error === 'Network Error' && <NotFound />}
+        
       </Container>
     </main>
   );

@@ -22,6 +22,7 @@ export const Input = styled.input`
   outline: none;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 10px;
   ::placeholder {
     font: inherit;
     font-size: 18px;
