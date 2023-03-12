@@ -42,19 +42,6 @@ export const NavigationLink = styled(NavLink)`
     background-color: yellow;
     color: navy;
   }
-  &.active {
-    &::after {
-      position: absolute;
-      bottom: 220px;
-      content: '';
-      display: block;
-      width: inherit;
-      height: 3px;
-      background-color: yellow;
-      border-radius: 2px;
-      border: none;
-    }
-  }
 `;
 
 export const Footer = styled.footer`

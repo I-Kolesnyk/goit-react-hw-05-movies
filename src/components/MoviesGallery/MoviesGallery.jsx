@@ -5,7 +5,7 @@ function MoviesGallery({ movies }) {
   return (
     <GalleryList>
       {movies.map(movie => (
-        <MoviesGalleryItem key={movie.id} movie={movie}/>
+        <MoviesGalleryItem key={movie.id} movie={movie} />
       ))}
     </GalleryList>
   );

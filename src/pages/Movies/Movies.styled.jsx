@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Title = styled.h1`
-    color: navy;
-`
-
 export const Container = styled.div`
 max-width: 320px;
   margin: 0 auto;
