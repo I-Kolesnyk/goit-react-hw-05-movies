@@ -1,7 +1,8 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-
+import Loader from 'components/Loader';
 import { StyledLink } from 'components/LinkButton/LinkButton.styled';
 import {
   Main,
@@ -54,7 +55,9 @@ function Movie({
             {pathname.includes('reviews') ? 'Hide Reviews' : 'Show Reviews'}
           </StyledLink>
         </Navigation>
+        <Suspense fallback={<Loader/>}>
         <Outlet />
+        </Suspense>
       </Container>
     </Main>
   );
@@ -63,11 +66,11 @@ function Movie({
 Movie.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    poster_path: PropTypes.string,
+    posterPath: PropTypes.string,
     overview: PropTypes.string,
     genres: PropTypes.string,
-    vote_average: PropTypes.number,
-    release_date: PropTypes.string,
+    vote: PropTypes.number,
+    year: PropTypes.string,
   }).isRequired,
 };
 export default Movie;
