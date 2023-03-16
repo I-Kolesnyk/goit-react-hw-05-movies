@@ -16,11 +16,11 @@ MoviesGallery.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      poster_path: PropTypes.string,
+      posterPath: PropTypes.string,
       overview: PropTypes.string,
       genres: PropTypes.string,
-      vote_average: PropTypes.number,
-      release_date: PropTypes.string,
+      vote: PropTypes.number,
+      year: PropTypes.string,
     }).isRequired
   ).isRequired,
 };

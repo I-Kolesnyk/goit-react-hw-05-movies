@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { getImagePosterPath } from 'utils/getImagePosterPath';
 import {
   ActorCard,
   ActorPhoto,
@@ -8,8 +7,7 @@ import {
   ActorSpanText,
 } from './Actor.styled';
 
-function Actor({ actor: { name, profile_path, character } }) {
-  const profilePath = getImagePosterPath(profile_path);
+function Actor({ actor: { name, profilePath, character } }) {
   return (
     <ActorCard>
       <ActorPhoto src={profilePath} alt={name} />
@@ -28,7 +26,7 @@ function Actor({ actor: { name, profile_path, character } }) {
 Actor.propTypes = {
   actor: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    profile_path: PropTypes.string,
+    profilePath: PropTypes.string,
     character: PropTypes.string.isRequired,
   }).isRequired,
 };

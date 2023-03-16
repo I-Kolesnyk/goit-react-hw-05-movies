@@ -19,6 +19,10 @@ export const Container = styled.div`
   }
 `;
 
+export const Main = styled.main `
+  flex-grow: 1;
+`
+
 export const HomeLink = styled(NavLink)`
   display: flex;
   justify-content: center;

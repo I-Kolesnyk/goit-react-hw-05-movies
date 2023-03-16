@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const Main = styled.main`
   padding-top: 40px;
   padding-bottom: 40px;
+  flex-grow: 1;
 `;
 
 export const Container = styled.div`

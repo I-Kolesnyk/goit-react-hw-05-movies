@@ -16,3 +16,6 @@ max-width: 320px;
     max-width: 1280px;
   }
 `
+export const Main = styled.main `
+  flex-grow: 1;
+`

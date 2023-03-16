@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getMoviesByQuery } from 'utils/api';
 
@@ -7,7 +7,7 @@ import SearchForm from 'components/SearchForm';
 import MoviesGallery from 'components/MoviesGallery';
 import Pagination from 'components/Pagination/Pagination';
 import Loader from 'components/Loader';
-import { Container } from './Movies.styled';
+import { Container, Main } from './Movies.styled';
 
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,9 +16,7 @@ function Movies() {
   const [status, setStatus] = useState('idle');
   const [page, setPage] = useState(searchParams.get('page'));
   const [totalPages, setTotalPages] = useState(0);
-  const [notification, setNotification] = useState({ type: '', message: '' });
-
-  const navigate = useNavigate();
+  const [notification, setNotification] = useState({ type: '', message: '' });  
 
   useEffect(() => {
     if (!query) return;
@@ -84,10 +82,9 @@ function Movies() {
     }
   }, [notification]);
 
-  const changePage = currentPage => {
-    navigate(`/search?query=${query}&page=${currentPage}`);
-    setPage(currentPage);
-    setQuery(query);
+  const changePage = currentPage => {   
+    setSearchParams({ query: query, page: currentPage })
+    setPage(currentPage);    
   };
 
   const handleSearch = value => {
@@ -119,7 +116,7 @@ function Movies() {
   };
 
   return (
-    <main>
+    <Main >
       <Container>
         <SearchForm onSubmit={handleSearch} />
         {status === 'pending' && <Loader />}
@@ -133,7 +130,7 @@ function Movies() {
           />
         )}
       </Container>
-    </main>
+    </Main>
   );
 }
 export default Movies;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getImagePosterPath } from 'utils/getImagePosterPath';
 
 const API_KEY = '1196368753ba671380e452b9a1020481';
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -13,7 +14,7 @@ export async function getTrendingMovies(page, controller) {
     return {
       id,
       title,
-      poster_path,
+      posterPath: getImagePosterPath(poster_path),
     };
   });
 
@@ -31,11 +32,11 @@ export async function getMovieDetails(movieId, controller) {
 
   return {
     title,
-    poster_path,
+    posterPath: getImagePosterPath(poster_path),
     overview,
     genres: genres.map(genre => genre.name).join(', '),
-    vote_average,
-    release_date,
+    vote: vote_average.toFixed(1),
+    year: release_date.slice(0, 4),
   };
 }
 
@@ -50,7 +51,7 @@ export async function getMovieCast(movieId, controller) {
       return {
         id,
         name,
-        profile_path,
+        profilePath: getImagePosterPath(profile_path),
         character,
       };
     }
@@ -86,7 +87,7 @@ export async function getMoviesByQuery(query, page = 1, controller) {
     return {
       id,
       title,
-      poster_path,
+      posterPath: getImagePosterPath(poster_path),
     };
   });
 

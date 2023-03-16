@@ -16,9 +16,9 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/:page" element={<HomePage />} />
-        <Route path="/search" element={<MoviesPage />} />
-        <Route path="/search/:query/:page" element={<MoviesPage />} />
-        <Route path="/movies/:movieId/" element={<MovieDetailsPage />}>
+        <Route path="search" element={<MoviesPage />} />
+        <Route path="search/:query/:page" element={<MoviesPage />} />
+        <Route path="movies/:movieId/" element={<MovieDetailsPage />}>
           <Route path="cast" element={<MovieCast />} />
           <Route path="reviews" element={<MovieReviews />} />
         </Route>

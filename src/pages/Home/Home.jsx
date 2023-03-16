@@ -7,7 +7,7 @@ import MoviesGallery from 'components/MoviesGallery';
 import Pagination from 'components/Pagination/Pagination';
 import Loader from 'components/Loader';
 
-import { Title, Container } from './Home.styled';
+import { Title, Container, Main } from './Home.styled';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -65,7 +65,7 @@ function Home() {
   };
 
   return (
-    <main>
+    <Main>
       <Container>
         {status === 'pending' && <Loader />}
         {status === 'resolved' && <Title>Trending today</Title>}
@@ -79,7 +79,7 @@ function Home() {
         )}
         
       </Container>
-    </main>
+    </Main>
   );
 }
 
